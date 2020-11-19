@@ -17,13 +17,18 @@ public:
 	// Sets default values for this component's properties
 	UInventoryComponent();
 
+	UFUNCTION(BlueprintPure, Category = "Inventory")
+	FORCEINLINE float GetWeightCapacity() const { return WeightCapacity; }
+
+	UFUNCTION(BlueprintPure, Category = "Inventory")
+	FORCEINLINE int32 GetCapacity() const { return Capacity; }
+
+	UFUNCTION(BlueprintPure, Category = "Inventory")
+	FORCEINLINE TArray<class UItem*> GetItems() const { return Items; }
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 
