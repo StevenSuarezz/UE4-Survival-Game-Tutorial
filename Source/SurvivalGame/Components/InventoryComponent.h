@@ -62,7 +62,7 @@ struct FItemAddResult
 
 	static FItemAddResult AddedAll(const int32 InItemQuantity)
 	{
-		FItemAddResult AddedAllResult(InItemQuantity);
+		FItemAddResult AddedAllResult(InItemQuantity, InItemQuantity);
 		AddedAllResult.Result = EItemAddResult::IAR_AllItemsAdded;
 
 		return AddedAllResult;

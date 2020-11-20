@@ -5,6 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/InventoryComponent.h"
 #include "Components/InteractionComponent.h"
 
 // Sets default values
@@ -44,6 +45,11 @@ ASurvivalCharacter::ASurvivalCharacter()
 	BackpackMesh = CreateDefaultSubobject<USkeletalMeshComponent>("BackpackMesh");
 	BackpackMesh->SetupAttachment(GetMesh());
 	BackpackMesh->SetMasterPoseComponent(GetMesh());
+
+	// Give the player an inventory with 20 slots, and an 80kg capacity
+	PlayerInventory = CreateDefaultSubobject<UInventoryComponent>("PlayerInventory");
+	PlayerInventory->SetCapacity(20);
+	PlayerInventory->SetWeightCapacity(80.f);
 
 	InteractionCheckFrequency = 0.f;
 	InteractionCheckDistance = 1000.f;
@@ -239,6 +245,11 @@ void ASurvivalCharacter::BeginInteract()
 	if (!HasAuthority()) 
 	{
 		ServerBeginInteract();
+	}
+
+	if (HasAuthority())
+	{
+		PerformInteractionCheck();
 	}
 
 	InteractionData.bInteractHeld = true;

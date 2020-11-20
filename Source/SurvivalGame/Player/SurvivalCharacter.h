@@ -40,6 +40,9 @@ public:
 	// Sets default values for this character's properties
 	ASurvivalCharacter();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	class UInventoryComponent* PlayerInventory;
+
 	UPROPERTY(EditAnywhere, Category = "Components")
 	class UCameraComponent* CameraComponent;
 
