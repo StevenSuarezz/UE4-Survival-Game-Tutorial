@@ -113,6 +113,21 @@ public:
 	// Get the time remaining until with interact with the current interactable
 	float GetRemainingInteractTime() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Items")
+	void UseItem(class UItem* Item);
+
+	UFUNCTION(BlueprintCallable, Category = "Items")
+	void DropItem(class UItem* Item, int32 Quantity);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerUseItem(class UItem* Item);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerDropItem(class UItem* Item, const int32 Quantity);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Item")
+	TSubclassOf<class APickup> PickupClass;
+
 protected:
 	void StartCrouching();
 	void StopCrouching();
