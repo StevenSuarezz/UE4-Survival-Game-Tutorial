@@ -26,6 +26,8 @@ bool UInventoryComponent::RemoveItem(UItem* Item)
 		{
 			Items.RemoveSingle(Item);
 
+			OnRep_Items();
+
 			ReplicatedItemsKey++;
 
 			return true;
